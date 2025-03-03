@@ -45,7 +45,7 @@ static const float fullscreen_bg[] = {0.1f, 0.1f, 0.1f,
                                       1.0f}; /* You can also use glsl colors */
 static uint32_t colors[][3] = {
     /*               fg          bg          border    */
-    [SchemeNorm] = {coloe2, colbk, colgy},
+    [SchemeNorm] = {colwe, colbk, colgy},
     [SchemeSel] = {colbk, colbe2, colaa2},
     [SchemeUrg] = {0, 0, colrd},
     [SchemeBar] = {0, 0, colaa2},
