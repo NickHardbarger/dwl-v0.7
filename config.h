@@ -10,7 +10,7 @@ static const int bypass_surface_visibility =
 static const int smartgaps =
     0; /* 1 means no outer gap when there is only one window */
 static const int monoclegaps = 0; /* 1 means outer gaps in monocle layout */
-static const unsigned int borderpx = 1; /* border pixel of windows */
+static const unsigned int borderpx = 1; /* border pixel of windows & bar */
 static const unsigned int gappih = 10;  /* horiz inner gap between windows */
 static const unsigned int gappiv = 10;  /* vert inner gap between windows */
 static const unsigned int gappoh =
@@ -30,6 +30,7 @@ static uint32_t colors[][3] = {
     [SchemeNorm] = {0xbbbbbbff, 0x222222ff, 0x444444ff},
     [SchemeSel] = {0xeeeeeeff, 0x005577ff, 0x005577ff},
     [SchemeUrg] = {0, 0, 0x770000ff},
+    [SchemeBar] = {0, 0, 0x557700ff},
 };
 /* tagging - TAGCOUNT must be no greater than 31 */
 static char *tags[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
