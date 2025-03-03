@@ -38,7 +38,7 @@ static const uint32_t colgn = 0x98971aff;  /* Green */
 static const uint32_t colgn2 = 0xb8bb26ff; /* Green 2 */
 static const uint32_t colpe2 = 0xd3869bff; /* Purple 2 */
 
-static const float rootcolor[] = COLOR(colblk);
+static const float rootcolor[] = COLOR(colbk);
 /* This conforms to the xdg-protocol. Set the alpha to zero to restore the old
  * behavior */
 static const float fullscreen_bg[] = {0.1f, 0.1f, 0.1f,
