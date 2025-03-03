@@ -10,7 +10,7 @@ static const int bypass_surface_visibility =
 static const int smartgaps =
     0; /* 1 means no outer gap when there is only one window */
 static const int monoclegaps = 0; /* 1 means outer gaps in monocle layout */
-static const unsigned int borderpx = 1; /* border pixel of windows & bar */
+static const unsigned int borderpx = 3; /* border pixel of windows & bar */
 static const unsigned int gappih = 10;  /* horiz inner gap between windows */
 static const unsigned int gappiv = 10;  /* vert inner gap between windows */
 static const unsigned int gappoh =
@@ -21,28 +21,55 @@ static const int showbar = 1;  /* 0 means no bar */
 static const int topbar = 1;   /* 0 means bottom bar */
 static const int vertpad = 10; /* vertical padding of bar */
 static const int sidepad = 10; /* horizontal padding of bar */
-static const char *fonts[] = {"monospace:size=10"};
-static const float rootcolor[] = COLOR(0x000000ff);
+static const char *fonts[] = {"JetBrainsMonoNF:size=12",
+                              "Noto Sans Mono CJK SC:size=12"};
+/* Colorscheme: gruvbox */
+static const uint32_t colwe = 0xebdbb2ff;  /* White */
+static const uint32_t colwe2 = 0xd5c4a1ff; /* White 2 */
+static const uint32_t colbk = 0x282828ff;  /* Black */
+static const uint32_t colgy = 0x928374ff;  /* Grey */
+static const uint32_t coloe = 0xd65d0eff;  /* Orange */
+static const uint32_t coloe2 = 0xfe8019ff; /* Orange 2 */
+static const uint32_t colbe = 0x458588ff;  /* Blue */
+static const uint32_t colbe2 = 0x83a598ff; /* Blue 2 */
+static const uint32_t colaa2 = 0x8ec07cff; /* Aqua 2 */
+static const uint32_t colrd = 0xcc241dff;  /* Red */
+static const uint32_t colgn = 0x98971aff;  /* Green */
+static const uint32_t colgn2 = 0xb8bb26ff; /* Green 2 */
+static const uint32_t colpe2 = 0xd3869bff; /* Purple 2 */
+
+static const float rootcolor[] = COLOR(colblk);
 /* This conforms to the xdg-protocol. Set the alpha to zero to restore the old
  * behavior */
 static const float fullscreen_bg[] = {0.1f, 0.1f, 0.1f,
                                       1.0f}; /* You can also use glsl colors */
 static uint32_t colors[][3] = {
     /*               fg          bg          border    */
-    [SchemeNorm] = {0xbbbbbbff, 0x222222ff, 0x444444ff},
-    [SchemeSel] = {0xeeeeeeff, 0x005577ff, 0x005577ff},
-    [SchemeUrg] = {0, 0, 0x770000ff},
-    [SchemeBar] = {0, 0, 0x557700ff},
+    [SchemeNorm] = {coloe2, colbk, colgy},
+    [SchemeSel] = {colbk, colbe2, colaa2},
+    [SchemeUrg] = {0, 0, colrd},
+    [SchemeBar] = {0, 0, colaa2},
 };
 /* tagging - TAGCOUNT must be no greater than 31 */
-static char *tags[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
+static char *tags[] = {"一", "二", "三", "四", "五", "六", "七", "八", "九"};
 
 /* logging */
 static int log_level = WLR_ERROR;
 
+/* volume */
+static const char *volumeup[] = {"pactl", "set-sink-volume", "@DEFAULT_SINK@",
+                                 "+5%", NULL};
+static const char *volumedown[] = {"pactl", "set-sink-volume", "@DEFAULT_SINK@",
+                                   "-5%", NULL};
+static const char *mutevolume[] = {"pactl", "set-sink-mute", "@DEFAULT_SINK@",
+                                   "toggle", NULL};
+static const char *mutemic[] = {"pactl", "set-source-mute", "@DEFAULT_SOURCE@",
+                                "toggle", NULL};
+
 /* Autostart */
 static const char *const autostart[] = {
-    "swaybg", "-i", "/home/nickh/nix/system/wallpapers/village.png", NULL,
+    "swaybg", "-i",   "/home/nickh/nix/system/wallpapers/village.png",
+    NULL,     "mako", NULL,
     NULL /* terminate */
 };
 /* NOTE: ALWAYS keep a rule declared even if you don't use rules (e.g leave at
@@ -86,10 +113,7 @@ static const MonitorRule monrules[] = {
 /* keyboard */
 static const struct xkb_rule_names xkb_rules = {
     /* can specify fields: rules, model, layout, variant, options */
-    /* example:
     .options = "ctrl:nocaps",
-    */
-    .options = NULL,
 };
 
 static const int repeat_rate = 25;
@@ -142,8 +166,8 @@ LIBINPUT_CONFIG_TAP_MAP_LMR -- 1/2/3 finger tap maps to left/middle/right
 static const enum libinput_config_tap_button_map button_map =
     LIBINPUT_CONFIG_TAP_MAP_LRM;
 
-/* If you want to use the windows key for MODKEY, use WLR_MODIFIER_LOGO */
-#define MODKEY WLR_MODIFIER_ALT
+/* If you want to use the alt key for MODKEY, use WLR_MODIFIER_ALT */
+#define MODKEY WLR_MODIFIER_LOGO
 
 #define TAGKEYS(KEY, SKEY, TAG)                                                \
   {MODKEY, KEY, view, {.ui = 1 << TAG}},                                       \
@@ -162,13 +186,13 @@ static const enum libinput_config_tap_button_map button_map =
 
 /* commands */
 static const char *termcmd[] = {"foot", NULL};
-static const char *menucmd[] = {"wmenu-run", NULL};
+static const char *menucmd[] = {"run-wmenu", NULL};
 
 static const Key keys[] = {
     /* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
     /* modifier                  key                 function        argument */
-    {MODKEY, XKB_KEY_p, spawn, {.v = menucmd}},
-    {MODKEY | WLR_MODIFIER_SHIFT, XKB_KEY_Return, spawn, {.v = termcmd}},
+    {MODKEY, XKB_KEY_r, spawn, {.v = menucmd}},
+    {MODKEY, XKB_KEY_Return, spawn, {.v = termcmd}},
     {MODKEY, XKB_KEY_b, togglebar, {0}},
     {MODKEY, XKB_KEY_j, focusstack, {.i = +1}},
     {MODKEY, XKB_KEY_k, focusstack, {.i = -1}},
@@ -207,8 +231,8 @@ static const Key keys[] = {
     {MODKEY | WLR_MODIFIER_LOGO, XKB_KEY_o, incohgaps, {.i = -1}},
     {MODKEY | WLR_MODIFIER_SHIFT, XKB_KEY_Y, incovgaps, {.i = +1}},
     {MODKEY | WLR_MODIFIER_SHIFT, XKB_KEY_O, incovgaps, {.i = -1}},
-    {MODKEY, XKB_KEY_Return, zoom, {0}},
-    {MODKEY, XKB_KEY_Tab, view, {0}},
+    {MODKEY, XKB_KEY_Tab, zoom, {0}},
+    {MODKEY | WLR_MODIFIER_SHIFT, XKB_KEY_Return, view, {0}},
     {MODKEY | WLR_MODIFIER_SHIFT, XKB_KEY_C, killclient, {0}},
     {MODKEY, XKB_KEY_t, setlayout, {.v = &layouts[0]}},
     {MODKEY, XKB_KEY_f, setlayout, {.v = &layouts[1]}},
@@ -238,6 +262,10 @@ static const Key keys[] = {
     TAGKEYS(XKB_KEY_8, XKB_KEY_asterisk, 7),
     TAGKEYS(XKB_KEY_9, XKB_KEY_parenleft, 8),
     {MODKEY | WLR_MODIFIER_SHIFT, XKB_KEY_Q, quit, {0}},
+    {0, XKB_KEY_XF86AudioRaiseVolume, spawn, {.v = volumeup}},
+    {0, XKB_KEY_XF86AudioLowerVolume, spawn, {.v = volumedown}},
+    {0, XKB_KEY_XF86AudioMute, spawn, {.v = mutevolume}},
+    {0, XKB_KEY_XF86AudioMicMute, spawn, {.v = mutemic}},
 
     /* Ctrl-Alt-Backspace and Ctrl-Alt-Fx used to be handled by X server */
     {WLR_MODIFIER_CTRL | WLR_MODIFIER_ALT, XKB_KEY_Terminate_Server, quit, {0}},
