@@ -1,7 +1,7 @@
 {
   pkgs ? import <nixpkgs> { },
 }:
-# Patches added: autostart, bar, barborders, barcolors?, barpadding, swallow, vanitygaps
+# Patches added: autostart, bar, barborders, barcolors!!, barpadding, swallow, vanitygaps
 /*
   Terminal: Mod+Return
   Run: Mod+r
