@@ -44,11 +44,11 @@ static const float rootcolor[] = COLOR(colbk);
 static const float fullscreen_bg[] = {0.1f, 0.1f, 0.1f,
                                       1.0f}; /* You can also use glsl colors */
 static uint32_t colors[][3] = {
-    /*               fg          bg          border    */
-    [SchemeNorm] = {colwe, colbk, colgy},
-    [SchemeSel] = {colbk, colbe2, colaa2},
+    /*              fg     bg     border    */
+    [SchemeNorm] = {colbe2, colbk, colgy},
+    [SchemeSel] = {colbk, coloe, colgn},
     [SchemeUrg] = {0, 0, colrd},
-    [SchemeBar] = {0, 0, colaa2},
+    [SchemeBar] = {0, 0, colgn},
 };
 /* tagging - TAGCOUNT must be no greater than 31 */
 static char *tags[] = {"一", "二", "三", "四", "五", "六", "七", "八", "九"};
