@@ -51,7 +51,9 @@ static uint32_t colors[][3] = {
     [SchemeBar] = {0, 0, colgn},
 };
 /* tagging - TAGCOUNT must be no greater than 31 */
-static char *tags[] = {"一", "二", "三", "四", "五", "六", "七", "八", "九"};
+static char *tags[] = {"", "二", "三", "四", "五", "六", "七", "八", "九"};
+/* static char *tags[] = {"一", "二", "三", "四", "五", "六", "七", "八", "九"};
+ */
 
 /* logging */
 static int log_level = WLR_ERROR;
