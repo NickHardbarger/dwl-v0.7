@@ -5,7 +5,6 @@ PKG_CONFIG = pkg-config
 
 # paths
 PREFIX = /usr/local
-MANDIR = $(PREFIX)/share/man
 DATADIR = $(PREFIX)/share
 
 XWAYLAND =
