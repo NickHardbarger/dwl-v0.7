@@ -68,8 +68,8 @@ install: dwl
 	chmod 644 $(DESTDIR)$(DATADIR)/wayland-sessions/dwl.desktop
 
 nix: dwl
-	cp -f dwl /home/nickh/nix/system/bin
-	chmod 755 /home/nickh/nix/system/bin/dwl
+	rm /home/nickh/nix/system/bin/dwl
+	mv dwl /home/nickh/nix/system/bin
 
 uninstall:
 	rm -f $(DESTDIR)$(PREFIX)/bin/dwl \
