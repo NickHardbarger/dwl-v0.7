@@ -51,8 +51,9 @@ static uint32_t colors[][3] = {
     [SchemeBar] = {0, 0, colgn},
 };
 /* tagging - TAGCOUNT must be no greater than 31 */
-static char *tags[] = {"", "󰖟", "", "四", "五",
-                       "六",  "七",   "", ""};
+/* Tags: emacs, terminal, browser, ?, ?, ?, ?, media, misc */
+static char *tags[] = {"", "", "󰖟", "四", "五",
+                       "六",  "七",  "󰕼", ""};
 /* static char *tags[] = {"一", "二", "三", "四", "五", "六", "七", "八", "九"};
  */
 
@@ -84,8 +85,8 @@ static const Rule rules[] = {
     {"Gimp_EXAMPLE", NULL, 0, 1, 0, 0,
      -1}, /* Start on currently visible tags floating, not tiled */
     {"firefox_EXAMPLE", NULL, 1 << 8, 0, 0, 0, -1}, /* Start on ONLY tag "9" */
-    {"foot", NULL, 0, 0, 1, 1,
-     -1}, /* make foot swallow clients that are not foot */
+    {"/home/nickh/nix/system/bin/catty", NULL, 0, 0, 1, 1,
+     -1}, /* make catty swallow clients that are not catty */
 };
 
 /* layout(s) */
@@ -188,7 +189,7 @@ static const enum libinput_config_tap_button_map button_map =
   }
 
 /* commands */
-static const char *termcmd[] = {"foot", NULL};
+static const char *termcmd[] = {"/home/nickh/nix/system/bin/catty", NULL};
 static const char *menucmd[] = {"run-wmenu", NULL};
 
 static const Key keys[] = {
