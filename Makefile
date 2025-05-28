@@ -46,34 +46,8 @@ xdg-shell-protocol.h:
 	$(WAYLAND_SCANNER) server-header \
 		$(WAYLAND_PROTOCOLS)/stable/xdg-shell/xdg-shell.xml $@
 
-config.h:
-	cp config.def.h $@
 clean:
 	rm -f dwl *.o *-protocol.h
-
-dist: clean
-	mkdir -p dwl-$(VERSION)
-	cp -R LICENSE* Makefile CHANGELOG.md README.md client.h config.def.h \
-		config.mk protocols dwl.c util.c util.h dwl.desktop \
-		dwl-$(VERSION)
-	tar -caf dwl-$(VERSION).tar.gz dwl-$(VERSION)
-	rm -rf dwl-$(VERSION)
-
-install: dwl
-	mkdir -p $(DESTDIR)$(PREFIX)/bin
-	cp -f dwl $(DESTDIR)$(PREFIX)/bin
-	chmod 755 $(DESTDIR)$(PREFIX)/bin/dwl
-	mkdir -p $(DESTDIR)$(DATADIR)/wayland-sessions
-	cp -f dwl.desktop $(DESTDIR)$(DATADIR)/wayland-sessions/dwl.desktop
-	chmod 644 $(DESTDIR)$(DATADIR)/wayland-sessions/dwl.desktop
-
-nix: dwl
-	rm /home/nickh/nix/system/bin/dwl
-	mv dwl /home/nickh/nix/system/bin
-
-uninstall:
-	rm -f $(DESTDIR)$(PREFIX)/bin/dwl \
-		$(DESTDIR)$(DATADIR)/wayland-sessions/dwl.desktop
 
 .SUFFIXES: .c .o
 .c.o:
