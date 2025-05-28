@@ -45,9 +45,16 @@ wlr-output-power-management-unstable-v1-protocol.h:
 xdg-shell-protocol.h:
 	$(WAYLAND_SCANNER) server-header \
 		$(WAYLAND_PROTOCOLS)/stable/xdg-shell/xdg-shell.xml $@
-
 clean:
 	rm -f dwl *.o *-protocol.h
+
+install: dwl
+	mkdir -p $(DESTDIR)$(PREFIX)/bin
+	cp -f dwl $(DESTDIR)$(PREFIX)/bin
+	chmod 755 $(DESTDIR)$(PREFIX)/bin/dwl
+	mkdir -p $(DESTDIR)$(DATADIR)/wayland-sessions
+	cp -f dwl.desktop $(DESTDIR)$(DATADIR)/wayland-sessions/dwl.desktop
+	chmod 644 $(DESTDIR)$(DATADIR)/wayland-sessions/dwl.desktop
 
 .SUFFIXES: .c .o
 .c.o:
