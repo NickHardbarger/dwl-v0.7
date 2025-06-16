@@ -10,6 +10,7 @@ DATADIR = $(PREFIX)/share
 XWAYLAND =
 XLIBS =
 # Uncomment to build XWayland support
+# xwayland needed for vlc and steam
 XWAYLAND = -DXWAYLAND
 XLIBS = xcb xcb-icccm
 
