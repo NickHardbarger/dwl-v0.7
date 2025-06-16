@@ -190,7 +190,7 @@ static const enum libinput_config_tap_button_map button_map =
   }
 
 /* commands */
-static const char *termcmd[] = {"catty", NULL};
+static const char *termcmd[] = {"foot", NULL};
 static const char *menucmd[] = {"run-wmenu", NULL};
 
 static const Key keys[] = {
