@@ -72,9 +72,9 @@ static const char *mutemic[] = {"pactl", "set-source-mute", "@DEFAULT_SOURCE@",
 
 /* Autostart */
 static const char *const autostart[] = {
-    "swaybg", "-i",   "/home/nickh/nix/system/wallpapers/columbus.jpg",
-    NULL,     "mako", NULL,
-    NULL /* terminate */
+    "swaybg", "-i", "/home/nickh/nix/system/wallpapers/columbus.jpg", NULL,
+    /* "mako", NULL, */ /* Redundant? */
+    NULL                /* terminate */
 };
 /* NOTE: ALWAYS keep a rule declared even if you don't use rules (e.g leave at
    least one example) */
