@@ -45,10 +45,10 @@ static const float fullscreen_bg[] = {0.1f, 0.1f, 0.1f,
                                       1.0f}; /* You can also use glsl colors */
 static uint32_t colors[][3] = {
     /*              fg     bg     border    */
-    [SchemeNorm] = {colbe2, colbk, colgy},
-    [SchemeSel] = {colbk, coloe, colgn},
+    [SchemeNorm] = {colpe2, colbk, colgy},
+    [SchemeSel] = {colbk, colaa2, coloe},
     [SchemeUrg] = {0, 0, colrd},
-    [SchemeBar] = {0, 0, colgn},
+    [SchemeBar] = {0, 0, coloe},
 };
 /* tagging - TAGCOUNT must be no greater than 31 */
 /* Tags: emacs, terminal, browser, ?, ?, ?, ?, media, misc */
@@ -72,7 +72,7 @@ static const char *mutemic[] = {"pactl", "set-source-mute", "@DEFAULT_SOURCE@",
 
 /* Autostart */
 static const char *const autostart[] = {
-    "swaybg", "-i",   "/home/nickh/nix/system/wallpapers/village.png",
+    "swaybg", "-i",   "/home/nickh/nix/system/wallpapers/columbus.jpg",
     NULL,     "mako", NULL,
     NULL /* terminate */
 };
