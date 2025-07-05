@@ -51,9 +51,8 @@ static uint32_t colors[][3] = {
     [SchemeBar] = {0, 0, coloe},
 };
 /* tagging - TAGCOUNT must be no greater than 31 */
-/* Tags: emacs, terminal, browser, ?, ?, ?, ?, media, misc */
-static char *tags[] = {"", "", "󰖟", "四", "五",
-                       "六",  "七",  "󰕼", ""};
+/* Tags: emacs, terminal, browser, media, misc */
+static char *tags[] = {"", "", "󰖟", "󰕼", ""};
 /* static char *tags[] = {"一", "二", "三", "四", "五", "六", "七", "八", "九"};
  */
 
