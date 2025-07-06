@@ -71,7 +71,7 @@ static const char *mutemic[] = {"pactl", "set-source-mute", "@DEFAULT_SOURCE@",
 
 /* Autostart */
 static const char *const autostart[] = {
-    "swaybg", "-i", "/home/nickh/nix/system/wallpapers/columbus.jpg", NULL,
+    "swaybg", "-i", "/home/nh/nix/system/wallpapers/columbus.jpg", NULL,
     /* "mako", NULL, */ /* Redundant? */
     NULL                /* terminate */
 };
