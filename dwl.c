@@ -1620,9 +1620,15 @@ void drawbar(Monitor *m) {
   if ((w = mw - tw - x + borderpx) > mh) {
     if (c) {
       drwl_setscheme(m->drw, colors[m == selmon ? SchemeSel : SchemeNorm]);
-      drwl_text(m->drw, x, y, w, mh, m->lrpad / 2, client_get_title(c), 0);
+      tw = TEXTW(selmon, client_get_title(c));
+      drwl_text(m->drw, x, y, w, mh,
+                !centeredtitle || tw > w ? m->lrpad / 2 : (w - tw) / 2,
+                client_get_title(c), 0);
       if (c && c->isfloating)
-        drwl_rect(m->drw, x + boxs, y + boxs, boxw, boxw, 0, 0);
+        drwl_rect(m->drw,
+                  !centeredtitle || tw > w ? x + boxs
+                                           : x + ((w - tw) / 2 - boxs * 8),
+                  y + boxs, boxw, boxw, 0, 0);
     } else {
       drwl_setscheme(m->drw, colors[SchemeNorm]);
       drwl_rect(m->drw, x, y, w, mh, 1, 1);
