@@ -73,15 +73,13 @@ static const char *mutemic[] = {"pactl", "set-source-mute", "@DEFAULT_SOURCE@",
 /* NOTE: ALWAYS keep a rule declared even if you don't use rules (e.g leave at
    least one example) */
 static const Rule rules[] = {
-    /* app_id             title       tags mask     isfloating  isterm noswallow
-       monitor */
+    /* app_id             title       tags mask     isfloating monitor */
     /* examples: */
-    {"Gimp_EXAMPLE", NULL, 0, 1, 0, 0,
+    {"Gimp_EXAMPLE", NULL, 0, 1,
      -1}, /* Start on currently visible tags floating, not tiled */
-    {"firefox_EXAMPLE", NULL, 1 << 8, 0, 0, 0, -1}, /* Start on ONLY tag "9" */
-    {"catty", NULL, 0, 0, 1, 1, -1},
-    {"foot", NULL, 0, 0, 1, 1, -1},
-    /* make terminals swallow clients that are not themselves */
+    {"firefox_EXAMPLE", NULL, 1 << 8, 0, -1}, /* Start on ONLY tag "9" */
+    {"catty", NULL, 0, 0, -1},
+    {"foot", NULL, 0, 0, -1},
 };
 
 /* layout(s) */
