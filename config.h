@@ -70,12 +70,6 @@ static const char *mutevolume[] = {"pactl", "set-sink-mute", "@DEFAULT_SINK@",
 static const char *mutemic[] = {"pactl", "set-source-mute", "@DEFAULT_SOURCE@",
                                 "toggle", NULL};
 
-/* Autostart */
-static const char *const autostart[] = {
-    "swaybg", "-i", "/home/nh/nix/system/wallpapers/columbus.jpg", NULL,
-    /* "mako", NULL, */ /* Redundant? */
-    NULL                /* terminate */
-};
 /* NOTE: ALWAYS keep a rule declared even if you don't use rules (e.g leave at
    least one example) */
 static const Rule rules[] = {
